@@ -1,6 +1,6 @@
 import React from 'react';
 import Player from '../Player/Player';
-//import './PlayersList.css';
+import './PlayersList.css';
 
 const PlayersList = (props) => (
    <ul className="PlayersList">

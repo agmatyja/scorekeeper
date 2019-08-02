@@ -1,5 +1,5 @@
 import React from 'react';
-//import './AddPlayer.css';
+import './AddPlayer.css';
 
 const AddPlayer = (props) => {
      let input;
