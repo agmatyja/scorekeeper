@@ -21,7 +21,6 @@ it('renders without crashing', () => {
 });
 
 
-
 it('renders correct number of players', () => {	
     const mockedOnScoreUpdate = jest.fn();
 
@@ -34,5 +33,20 @@ it('renders correct number of players', () => {
     onPlayerScoreChange(10);
 
     expect(mockedOnScoreUpdate).toBeCalledWith(0, 10);
+});
+
+
+it('calls onPlayerRemove from parent component', () => {	
+    const mockedOnPlayerRemove = jest.fn();
+
+    const playerComponent = shallow(<PlayersList players={players} onPlayerRemove={mockedOnPlayerRemove} />);
+
+    const firstPlayer = playerComponent.find(Player).first();
+
+    const onPlayerRemove = firstPlayer.prop('onPlayerRemove');
+
+    onPlayerRemove();
+
+    expect(mockedOnPlayerRemove).toBeCalledWith(0);
 });
 

@@ -4,13 +4,14 @@ import PlayersList from './components/PlayersList/PlayersList';
 import AddPlayer from './components/AddPlayer/AddPlayer';
 
 class App extends Component {
- constructor() {
-   super();
+  constructor() {
+    super();
 
-   this.state = {
-     players: []
-   }
- }
+    this.state = {
+      players: []
+    }
+  }
+  
   onScoreUpdate = (playerIndex, scoreChange) => {
     this.setState({
       players: this.state.players.map((player, index) => {
@@ -26,20 +27,30 @@ class App extends Component {
     const newPlayer = {
       name: playerName,
       score: 0,
-  }
+    }
   
-  this.setState({
-    players: [...this.state.players, newPlayer]
-  })
-}
- render() {
-   return (
-     <div className="App">
-       <AddPlayer onPlayerAdd={this.onPlayerAdd} />
-       <PlayersList players={this.state.players} onScoreUpdate={this.onScoreUpdate}/>
-     </div>
-   );
- }
+    this.setState({
+      players: [...this.state.players, newPlayer]
+    })
+  }
+
+  onPlayerRemove = (playerIndex) => {
+    this.setState({
+      players: this.state.players.filter((pl, index) => {return index !== playerIndex})
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <AddPlayer onPlayerAdd={this.onPlayerAdd} />
+        <PlayersList 
+          players={this.state.players} 
+          onScoreUpdate={this.onScoreUpdate}
+          onPlayerRemove={this.onPlayerRemove} />
+      </div>
+    );
+  }
 }
 
 
